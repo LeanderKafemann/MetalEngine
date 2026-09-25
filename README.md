@@ -8,8 +8,8 @@ and a free-flying camera.
 
 ## Requirements
 
-- macOS 13+ on Apple Silicon (or any Metal-capable Mac)
-- Xcode 15+ / Swift 5.9+ command line tools
+- macOS 27 on Apple Silicon (or any Metal-capable Mac)
+- Xcode 27 / Swift 5.9+ command line tools
 
 ## Build & run
 
@@ -88,13 +88,3 @@ roughly in order of how most people build these up:
 6. **Compute passes** — Metal's compute pipeline (particles, culling, post
    processing) plugs into the same `MTLCommandBuffer`/`MTLCommandQueue` you
    already have here.
-
-## Note on this build environment
-
-This project was written and reviewed for correctness but not compiled here
-— Metal and AppKit only exist on macOS, and this session runs in a Linux
-container. Build it with `swift run -c release` on an actual Mac. If Xcode
-reports an error, the most likely culprits for hand-written Metal code like
-this are a vertex descriptor / struct offset mismatch or a pixel format
-mismatch between the `MTKView` and the pipeline descriptor — both are
-centralized in `Renderer.swift` if you need to adjust them.
